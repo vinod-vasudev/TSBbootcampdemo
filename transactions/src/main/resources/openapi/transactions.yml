@@ -1,0 +1,153 @@
+---
+openapi: 3.0.0
+info:
+  title: Transactions Microservice
+  version: 0.0.1
+paths:
+  /api/v1/health-check:
+    get:
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-fapi-auth-date
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-fapi-customer-ip-address
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-fapi-interaction-id
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          schema:
+            type: string
+            enum:
+              - application/json
+      summary: Transaction MS Health Check
+      operationId: health-check
+      tags:
+        - transactions
+      responses:
+        "200":
+          description: Checking Transactions MS Health
+          content:
+            application/json:
+              schema:
+                type: string
+        "404":
+          description: Not Found
+          content: {}
+  "/api/v1/accounts/{AccountId}/transactions":
+    get:
+      summary: Get transaction details by Id
+      operationId: transactionsById
+      parameters:
+        - name: AccountId
+          in: path
+          description: Account ID
+          required: true
+          schema:
+            type: string
+      tags:
+        - transactions
+      responses:
+        "200":
+          description: Transaction detail by Id information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionsResponse"
+components:
+  schemas:
+    TransactionsResponse:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Transaction:
+              type: array
+              items:
+                type: object
+                properties:
+                  AccountId:
+                    type: string
+                  TransactionId:
+                    type: string
+                  TransactionReference:
+                    type: string
+                  Amount:
+                    type: object
+                    properties:
+                      Amount:
+                        type: string
+                      Currency:
+                        type: string
+                  CreditDebitIndicator:
+                    type: string
+                  Status:
+                    type: string
+                  BookingDateTime:
+                    type: string
+                    format: date-time
+                  ValueDateTime:
+                    type: string
+                    format: date-time
+                  TransactionInformation:
+                    type: string
+                  BankTransactionCode:
+                    type: object
+                    properties:
+                      Code:
+                        type: string
+                      SubCode:
+                        type: string
+                  ProprietaryBankTransactionCode:
+                    type: object
+                    properties:
+                      Code:
+                        type: string
+                      Issuer:
+                        type: string
+                  Balance:
+                    type: object
+                    properties:
+                      Amount:
+                        type: object
+                        properties:
+                          Amount:
+                            type: string
+                          Currency:
+                            type: string
+                      CreditDebitIndicator:
+                        type: string
+                      Type:
+                        type: string
+        Links:
+          type: object
+          properties:
+            Self:
+              type: string
+        Meta:
+          type: object
+          properties:
+            TotalPages:
+              type: integer
+              format: int32
+            FirstAvailableDateTime:
+              type: string
+              format: date-time
+            LastAvailableDateTime:
+              type: string
+              format: date-time

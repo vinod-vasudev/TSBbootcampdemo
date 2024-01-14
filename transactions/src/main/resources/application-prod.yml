@@ -1,0 +1,95 @@
+
+server:
+  port: '8080'
+spring:
+  webflux:
+    base-path: 'transactions'
+
+auth:
+  url: http://localhost:8080/transactions/api/v1/mock/auth/
+consent:
+  url: http://localhost:8080/transactions/api/v1/mock/consent
+transactionsById:
+  url: http://localhost:8080/transactions/api/v1/mock/accounts/{AccountId}/transactions
+
+#actuator
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  health:
+    ratelimiters:
+      enabled: true
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+resilience4j:
+
+  #rate limit
+  .ratelimiter:
+    configs:
+      default:
+        limitForPeriod: 5
+        limitRefreshPeriod: 15s
+        timeoutDuration: 5s
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 100
+    instances:
+      transactionRateLimit:
+        baseConfig: default
+      authRateLimit:
+        baseConfig: default
+      consentRateLimit:
+        baseConfig: default
+
+  #bulkhead
+  bulkhead:
+    configs:
+      transactionBulkheadConfig:
+        maxConcurrentCalls: 10
+        maxWaitDuration: 20s
+    instances:
+      transactionBulkheadInstance:
+        baseConfig: transactionBulkheadConfig
+
+  #circuitbreaker
+  circuitbreaker:
+    configs:
+      transactionsCircuitBreakerConfig:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 1000
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+    instances:
+      authService:
+        baseConfig: transactionsCircuitBreakerConfig
+      consentService:
+        baseConfig: transactionsCircuitBreakerConfig
+      transactionservice:
+        baseConfig: transactionsCircuitBreakerConfig
+
+#logging
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n'
+  level:
+    org:
+      springframework:
+        web: INFO
+    com:
+      ob:
+        tsb:
+          transactions: ERROR
+  file:
+    name: transactionsMs.log
+  logback:
+    rollingpolicy:
+      max-history: '10'
+      max-file-size: 10MB
