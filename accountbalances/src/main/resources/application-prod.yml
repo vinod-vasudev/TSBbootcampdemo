@@ -1,0 +1,97 @@
+
+server:
+  port: '8080'
+spring:
+  webflux:
+    base-path: 'balances'
+
+auth:
+  url: https://ob-api.ob-cluster.mywv.p1.openshiftapps.com/balances/api/v1/mock/auth/
+consent:
+  url: https://ob-api.ob-cluster.mywv.p1.openshiftapps.com/balances/api/v1/mock/consent
+balances:
+  url: https://ob-api.ob-cluster.mywv.p1.openshiftapps.com/balances/api/v1/mock/balances
+balancesById:
+  url: https://ob-api.ob-cluster.mywv.p1.openshiftapps.com/balances/api/v1/mock/accounts/{AccountId}/balances
+
+#actuator
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  health:
+    ratelimiters:
+      enabled: true
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+resilience4j:
+
+  #rate limit
+  .ratelimiter:
+    configs:
+      default:
+        limitForPeriod: 5
+        limitRefreshPeriod: 15s
+        timeoutDuration: 5s
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 100
+    instances:
+      balanceRateLimit:
+        baseConfig: default
+      authRateLimit:
+        baseConfig: default
+      consentRateLimit:
+        baseConfig: default
+
+  #bulkhead
+  bulkhead:
+    configs:
+      balanceBulkheadConfig:
+        maxConcurrentCalls: 10
+        maxWaitDuration: 20s
+    instances:
+      balanceBulkheadInstance:
+        baseConfig: balanceBulkheadConfig
+
+  #circuitbreaker
+  circuitbreaker:
+    configs:
+      balancesCircuitBreakerConfig:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 1000
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+    instances:
+      authService:
+        baseConfig: balancesCircuitBreakerConfig
+      consentService:
+        baseConfig: balancesCircuitBreakerConfig
+      balanceservice:
+        baseConfig: balancesCircuitBreakerConfig
+
+#logging
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n'
+  level:
+    org:
+      springframework:
+        web: INFO
+    com:
+      ob:
+        tsb:
+          balances: ERROR
+  file:
+    name: balancesMs.log
+  logback:
+    rollingpolicy:
+      max-history: '10'
+      max-file-size: 10MB
