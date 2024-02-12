@@ -1,0 +1,62 @@
+[
+  {
+    "AccountId": "100",
+    "Amount": {
+      "Amount": "string",
+      "Currency": "string"
+    },
+    "CreditDebitIndicator": "Debit",
+    "Type": "Openingbalance",
+    "DateTime": 1704870032,
+    "CreditLine": [
+      {
+        "Included": true,
+        "Amount": {
+          "Amount": "string",
+          "Currency": "string"
+        },
+        "Type": "Available"
+      }
+    ]
+  },
+  {
+    "AccountId": "100",
+    "Amount": {
+      "Amount": "string",
+      "Currency": "string"
+    },
+    "CreditDebitIndicator": "Credit",
+    "Type": "Openingbalance",
+    "DateTime": 1704870032,
+    "CreditLine": [
+      {
+        "Included": true,
+        "Amount": {
+          "Amount": "string",
+          "Currency": "string"
+        },
+        "Type": "Available"
+      }
+    ]
+  },
+  {
+    "AccountId": "100",
+    "Amount": {
+      "Amount": "string",
+      "Currency": "string"
+    },
+    "CreditDebitIndicator": "Debit",
+    "Type": "Openingbalance",
+    "DateTime": 1704870032,
+    "CreditLine": [
+      {
+        "Included": true,
+        "Amount": {
+          "Amount": "string",
+          "Currency": "string"
+        },
+        "Type": "Available"
+      }
+    ]
+  }
+]
