@@ -1,0 +1,144 @@
+{
+  "Data": [
+    {
+      "ConsentId": "12345",
+      "ConsentStatus": "Authorised",
+      "Accounts": [
+        {
+          "AccountId": "22289",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2019-01-01T06:06:06+00:00",
+          "AccountType": "Personal",
+          "AccountSubType": "CurrentAccount",
+          "OpeningDate": "01-05-2002",
+          "Permissions": [
+            "ReadAccountsDetail",
+            "ReadBalances",
+            "ReadBeneficiariesDetail",
+            "ReadDirectDebits",
+            "ReadProducts",
+            "ReadStandingOrdersDetail",
+            "ReadTransactionsCredits",
+            "ReadTransactionsDebits",
+            "ReadTransactionsDetail",
+            "ReadOffers",
+            "ReadParty",
+            "ReadPartyPSU",
+            "ReadScheduledPaymentsDetail",
+            "ReadStatementsDetail"
+          ],
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203345",
+              "Name": "Mr Kevin",
+              "SecondaryIdentification": "00021"
+            }
+          ]
+        },
+        {
+          "AccountId": "31820",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "Business",
+          "AccountSubType": "CurrentAccount",
+          "Nickname": "Household",
+          "Permissions": [
+            "ReadAccountsDetail",
+            "ReadBalances",
+            "ReadBeneficiariesDetail",
+            "ReadDirectDebits",
+            "ReadProducts",
+            "ReadStandingOrdersDetail",
+            "ReadTransactionsCredits",
+            "ReadTransactionsDebits",
+            "ReadTransactionsDetail",
+            "ReadOffers",
+            "ReadParty",
+            "ReadPartyPSU",
+            "ReadScheduledPaymentsDetail",
+            "ReadStatementsDetail"
+          ],
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin"
+            }
+          ]
+        },
+        {
+          "AccountId": "41820",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "Business",
+          "AccountSubType": "CreditCard",
+          "Nickname": "Household",
+          "Permissions": [
+            "ReadAccountsDetail",
+            "ReadBalances",
+            "ReadBeneficiariesDetail",
+            "ReadDirectDebits",
+            "ReadProducts",
+            "ReadStandingOrdersDetail",
+            "ReadTransactionsCredits",
+            "ReadTransactionsDebits",
+            "ReadTransactionsDetail",
+            "ReadOffers",
+            "ReadParty",
+            "ReadPartyPSU",
+            "ReadScheduledPaymentsDetail",
+            "ReadStatementsDetail"
+          ],
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ConsentId": "45672",
+      "ConsentStatus": "Authorised",
+      "Accounts": [
+        {
+          "AccountId": "31820",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "Business",
+          "AccountSubType": "CurrentAccount",
+          "Nickname": "Household",
+          "Permissions": [
+            "ReadAccountsDetail",
+            "ReadBalances",
+            "ReadBeneficiariesDetail",
+            "ReadDirectDebits",
+            "ReadProducts",
+            "ReadStandingOrdersDetail",
+            "ReadTransactionsCredits",
+            "ReadTransactionsDebits",
+            "ReadTransactionsDetail",
+            "ReadOffers",
+            "ReadParty",
+            "ReadPartyPSU",
+            "ReadScheduledPaymentsDetail",
+            "ReadStatementsDetail"
+          ],
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
