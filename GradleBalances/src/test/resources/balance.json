@@ -1,0 +1,22 @@
+[
+  {
+    "AccountId": "31820",
+    "Amount": {
+      "Amount": "123.45",
+      "Currency": "GBP"
+    },
+    "CreditDebitIndicator": "Debit",
+    "Type": "OpeningAvailable",
+    "DateTime": "2024-01-15T13:40:25Z",
+    "CreditLine": [
+      {
+        "Included": true,
+        "Amount": {
+          "Amount": "5000.00",
+          "Currency": "GBP"
+        },
+        "Type": "Available Credit"
+      }
+    ]
+  }
+]

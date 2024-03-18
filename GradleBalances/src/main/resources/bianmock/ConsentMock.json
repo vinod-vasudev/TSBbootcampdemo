@@ -1,0 +1,153 @@
+{
+  "Data": [
+    {
+      "ConsentId": "12345",
+      "ConsentStatus": "Authorised",
+      "Permissions": [
+        "ReadAccountsDetail",
+        "ReadBalances",
+        "ReadBeneficiariesDetail",
+        "ReadDirectDebits",
+        "ReadProducts",
+        "ReadStandingOrdersDetail",
+        "ReadTransactionsCredits",
+        "ReadTransactionsDebits",
+        "ReadTransactionsDetail",
+        "ReadOffers",
+        "ReadParty",
+        "ReadPartyPSU",
+        "ReadScheduledPaymentsDetail",
+        "ReadStatementsDetail"
+      ],
+      "Accounts": [
+        {
+          "AccountId": "22289",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2019-01-01T06:06:06+00:00",
+          "AccountType": "Personal",
+          "AccountSubType": "CurrentAccount",
+          "OpeningDate": "01-05-2002",
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203345",
+              "Name": "Mr Kevin",
+              "SecondaryIdentification": "00021"
+            }
+          ]
+        },
+        {
+          "AccountId": "31820",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "Business",
+          "AccountSubType": "CurrentAccount",
+          "Nickname": "Household",
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin"
+            }
+          ]
+        },
+        {
+          "AccountId": "41820",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "Business",
+          "AccountSubType": "CreditCard",
+          "Nickname": "Household",
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ConsentId": "45672",
+      "ConsentStatus": "Authorised",
+      "Permissions": [
+        "ReadBalances"
+      ],
+      "Accounts": [
+        {
+          "AccountId": "31820",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "Business",
+          "AccountSubType": "CurrentAccount",
+          "Nickname": "Household",
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ConsentId": "22222",
+      "ConsentStatus": "Rejected",
+      "Permissions": [
+        "ReadBalances"
+      ],
+      "Accounts": [
+        {
+          "AccountId": "41821",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "Corporate",
+          "Nickname": "Household",
+          "AccountSubType": "CurrentAccount",
+          "OpeningDate": null,
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin",
+              "SecondaryIdentification": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ConsentId": "11111",
+      "ConsentStatus": "AwaitingAuthorisation",
+      "Permissions": [
+        "ReadBalances"
+      ],
+      "Accounts": [
+        {
+          "AccountId": "41821",
+          "Status": "Enabled",
+          "StatusUpdateDateTime": "2018-01-01T06:06:06+00:00",
+          "Currency": "GBP",
+          "AccountType": "CorporateCurrentAccount",
+          "Nickname": "Household",
+          "AccountSubType": "CurrentAccount",
+          "OpeningDate": null,
+          "Account": [
+            {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200110203348",
+              "Name": "Mr Kevin",
+              "SecondaryIdentification": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

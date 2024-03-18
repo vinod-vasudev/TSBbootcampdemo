@@ -1,0 +1,98 @@
+
+server:
+  port: '8080'
+spring:
+  webflux:
+    base-path: 'balances'
+
+auth:
+  url: ${authService.url}
+consent:
+  url: ${consentService.url}
+bianurls: ${bianService.urls}
+balancesById:
+  url:  ${balancesServiceById.url}
+
+#actuator
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  health:
+    ratelimiters:
+      enabled: true
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+resilience4j:
+
+  #rate limit
+  .ratelimiter:
+    configs:
+      default:
+        limitForPeriod: 100
+        limitRefreshPeriod: 5s
+        timeoutDuration: 5s
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 1000
+    instances:
+      balanceRateLimit:
+        baseConfig: default
+      authRateLimit:
+        baseConfig: default
+      consentRateLimit:
+        baseConfig: default
+
+  #bulkhead
+  bulkhead:
+    configs:
+      balanceBulkheadConfig:
+        maxConcurrentCalls: 100
+        maxWaitDuration: 20s
+    instances:
+      balanceBulkheadInstance:
+        baseConfig: balanceBulkheadConfig
+
+  #circuitbreaker
+  circuitbreaker:
+    configs:
+      balancesCircuitBreakerConfig:
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 1000
+        permittedNumberOfCallsInHalfOpenState: 1000
+        failureRateThreshold: 100
+        minimumNumberOfCalls: 100
+        waitDurationInOpenState: 1000
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+    instances:
+      authService:
+        baseConfig: balancesCircuitBreakerConfig
+      consentService:
+        baseConfig: balancesCircuitBreakerConfig
+      balanceservice:
+        baseConfig: balancesCircuitBreakerConfig
+
+#logging
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n'
+  level:
+    org:
+      springframework:
+        web: INFO
+    com:
+      ob:
+        tsb:
+          balances: ERROR
+  file:
+    name: balancesMs.log
+  logback:
+    rollingpolicy:
+      max-history: '10'
+      max-file-size: 10MB
